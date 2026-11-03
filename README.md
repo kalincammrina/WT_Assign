@@ -85,15 +85,7 @@ The PHP and Servlet modules use the same `student_db` database and the same PHP 
 7. Copy `servlet/target/student-portal.war` to Tomcat's `webapps/` directory and start Tomcat.
 8. Open `http://localhost:8080/student-portal/`, sign in as `portaladmin`, and verify student profiles and uploaded file links.
 
-## 5. Security and validation notes
-
-- JavaScript validates required values, email, roll number, password strength and upload type/size before form submission.
-- PHP repeats important registration and upload checks server-side, uses PDO prepared statements, stores password hashes, and generates random storage filenames.
-- PHP and Servlet file endpoints require an authenticated session and look up file metadata by database ID. The Servlet endpoint normalizes and checks the resolved file path against the configured upload root.
-- JSP values sourced from the database are HTML-escaped before rendering.
-- This is an academic demonstration, not a production-ready deployment. Production use also needs HTTPS, CSRF protection, login throttling, stronger authorization design and managed secrets.
-
-## 6. Screenshots
+## 5. Screenshots
 
 The `screenshots/` folder contains **visual reference captures** generated from the static preview pages in `screenshots/previews/`. Their sample counts and records are illustrative and are not live database values. The optional `database/demo_seed.sql` creates three separate fictional demo students and six sample file records in your local database:
 
@@ -105,37 +97,6 @@ The `screenshots/` folder contains **visual reference captures** generated from 
 
 **Screenshot status:** these are design/reference captures, not proof that MySQL, PHP sessions, JDBC, Tomcat login or file streaming were executed successfully in your own environment. The PHP MySQL driver and a MySQL server were not available in the build environment, and Maven/Tomcat were not available for an end-to-end run. After starting the project locally, capture fresh screenshots of the live pages and replace these files if your instructor expects execution evidence. Do not describe the reference captures as live backend test evidence.
 
-### How to capture your own live screenshots
-
-1. Run Q1 and capture the registration page plus one validation error and one successful submission.
-2. Run Q2, sign in, add at least two students, upload one JPG/PNG and one PDF, then capture the dashboard and one student detail page.
-3. Run Q3 on Tomcat 9, sign in, capture the student directory showing the same database records, and open one image/document through the Servlet file endpoint.
-4. Save the images in `screenshots/` using the filenames in the table above. Update this section if you add more screenshots.
-
-## 7. Test checklist
-
-- [ ] Valid registration creates a student row.
-- [ ] Invalid email, roll number and weak password are rejected.
-- [ ] Unsupported or oversized files are rejected.
-- [ ] PHP admin login works and unauthenticated users are redirected.
-- [ ] PHP Add, View, Edit and Delete work.
-- [ ] File metadata appears on the student's detail page.
-- [ ] Servlet login works against a bcrypt hash in `portal_users`.
-- [ ] Servlet displays all student records from the same database.
-- [ ] Servlet streams an uploaded image/document only to a logged-in user.
-
 ## 8. Conclusion
 
-The project demonstrates a student registration form using HTML, CSS and JavaScript with client-side validation. PHP and MySQL provide student CRUD operations and file upload metadata management. Java Servlets, JSP and JDBC retrieve student records and securely stream associated files to authenticated users. The three modules demonstrate front-end development, server-side programming and database connectivity.
-
-## Repository structure
-
-```text
-StudentManagementAssignment/
-├── database/student_db.sql
-├── frontend/                 # Q1 HTML, CSS, JavaScript
-├── php/                      # Q2 PHP CRUD and uploads
-├── servlet/                  # Q3 Maven Servlet/JSP project
-├── screenshots/              # Interface reference captures
-└── README.md
-```
+The project demonstrates a student registration form using HTML, CSS and JavaScript with client-side validation. PHP and MySQL provides student CRUD operations and file upload metadata management. Java Servlets, JSP and JDBC retrieve student records and securely stream associated files to authenticated users. The three modules demonstrate front-end development, server-side programming and database connectivity.
