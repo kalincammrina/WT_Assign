@@ -1,0 +1,1 @@
+<?php require __DIR__.'/includes/db.php'; require __DIR__.'/includes/auth.php'; require_login(); if($_SERVER['REQUEST_METHOD']!=='POST') {http_response_code(405);exit('Method not allowed');} $s=$pdo->prepare('DELETE FROM students WHERE id=?');$s->execute([(int)($_POST['id']??0)]);header('Location: view_students.php');exit; ?>
